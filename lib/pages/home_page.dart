@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:noticia24h/widgets/manchete_suite_destaque.dart';
 
 class HomePage extends StatelessWidget {
   List<Tab> tabs = [
@@ -33,12 +34,18 @@ class HomePage extends StatelessWidget {
             ),
           ],
           bottom: PreferredSize(
-              preferredSize: Size.fromHeight(30),
+              preferredSize: const Size.fromHeight(30),
               child: TabBar(
                 indicatorColor: Colors.white,
                 isScrollable: true,
                 tabs: tabs,
               )),
+        ),
+        body: Column(
+          children: [
+            const MancheteSuiteDestaque(),
+            const Divider(),
+          ],
         ),
       ),
     );
