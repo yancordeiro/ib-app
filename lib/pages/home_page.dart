@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:noticia24h/widgets/manchete_suite_destaque.dart';
+import '../widgets/manchete_suite_destaque.dart';
+import '../widgets/chamada_suite.dart';
 
 class HomePage extends StatelessWidget {
   List<Tab> tabs = [
@@ -44,7 +45,7 @@ class HomePage extends StatelessWidget {
         body: Column(
           children: [
             const MancheteSuiteDestaque(),
-            const Divider(),
+            const ChamadaSuite(),
           ],
         ),
       ),
