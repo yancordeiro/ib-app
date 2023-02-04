@@ -42,11 +42,13 @@ class HomePage extends StatelessWidget {
                 tabs: tabs,
               )),
         ),
-        body: Column(
-          children: [
-            const MancheteSuiteDestaque(),
-            const ChamadaSuite(),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const MancheteSuiteDestaque(),
+              const ChamadaSuite(),
+            ],
+          ),
         ),
       ),
     );

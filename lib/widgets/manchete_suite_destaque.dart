@@ -51,7 +51,7 @@ class MancheteSuiteDestaque extends StatelessWidget {
           bottom: 0,
           child: Container(
             padding: const EdgeInsets.all(20),
-            width: MediaQuery.of(context).size.width * 1,
+            width: MediaQuery.of(context).size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               // ignore: prefer_const_literals_to_create_immutables
