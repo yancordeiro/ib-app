@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'api/article.dart';
 import 'pages/home_page.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+  await getArticle();
 }
 
 class MyApp extends StatelessWidget {

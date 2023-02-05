@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
 class MancheteSuiteDestaque extends StatelessWidget {
-  const MancheteSuiteDestaque({super.key});
+  // final String chapeu;
+  // final String header;
+  // final String subheader;
+  // final String secondSubheader;
+
+  const MancheteSuiteDestaque({
+    Key? key,
+    // required this.chapeu,
+    // required this.header,
+    // required this.subheader,
+    // required this.secondSubheader,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +65,6 @@ class MancheteSuiteDestaque extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 const Text(
                   "Key Alves revela amizade com ex de Bruna Griphao:",

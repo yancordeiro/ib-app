@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../api/article.dart';
 import '../widgets/manchete_suite_destaque.dart';
 import '../widgets/chamada_suite.dart';
+
+void loadArticles() {
+  getArticle();
+}
 
 class HomePage extends StatelessWidget {
   List<Tab> tabs = [
