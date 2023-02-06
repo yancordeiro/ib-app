@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-const url = "https://ibahia.mundiware.com/hub/article";
+const url =
+    "https://newsapi.org/v2/top-headlines?country=us&apiKey=399c0c22d7c845608909937a974ab209";
 
 void main() {
   getArticle();
