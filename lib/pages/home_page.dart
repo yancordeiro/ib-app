@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../api/get_article.dart';
+import '../models/article_model.dart';
 import '../widgets/manchete_suite_destaque.dart';
 import '../widgets/chamada_suite.dart';
-
-void loadArticles() {
-  getArticle();
-}
 
 class HomePage extends StatelessWidget {
   List<Tab> tabs = [
@@ -17,6 +14,15 @@ class HomePage extends StatelessWidget {
     const Tab(child: Text('últimas notícias')),
     const Tab(child: Text('agenda cultural')),
   ];
+
+  final article = const Article(
+    author: '',
+    content: '',
+    description: '',
+    title: '',
+    url: '',
+    urlToImage: '',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +57,15 @@ class HomePage extends StatelessWidget {
           child: Column(
             children: [
               const MancheteSuiteDestaque(),
-              const ChamadaSuite(),
+              ChamadaSuite(
+                title: article.title,
+                author: article.author,
+                content: article.content,
+                description: article.description,
+                url: article.url,
+                urlToImage: article.urlToImage,
+                article: article.article,
+              ),
             ],
           ),
         ),

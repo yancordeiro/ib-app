@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../models/article_model.dart';
+
 class ChamadaSuite extends StatelessWidget {
-  const ChamadaSuite({super.key});
+  final Article article;
+  final String title;
+  final String author;
+  final String description;
+  final String url;
+  final String urlToImage;
+  final String content;
+
+  const ChamadaSuite(
+      {super.key,
+      required this.title,
+      required this.author,
+      required this.description,
+      required this.url,
+      required this.urlToImage,
+      required this.content,
+      required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +54,8 @@ class ChamadaSuite extends StatelessWidget {
                       letterSpacing: 0.13,
                     ),
                   ),
-                  const Text(
-                    "Com cara de final antecipada, Inglaterra e França jogam pelas quartas",
+                  Text(
+                    article.title,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
