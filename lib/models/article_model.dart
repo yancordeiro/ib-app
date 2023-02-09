@@ -6,7 +6,6 @@ class Article {
   final String description;
   final String url;
   final String urlToImage;
-  final DateTime publishedAt;
   final String content;
 
   const Article({
@@ -15,7 +14,6 @@ class Article {
     required this.description,
     required this.url,
     required this.urlToImage,
-    required this.publishedAt,
     required this.content,
   });
 
@@ -26,8 +24,9 @@ class Article {
       description: json['description'],
       url: json['url'],
       urlToImage: json['urlToImage'],
-      publishedAt: json['publishedAt'],
       content: json['content'],
     );
   }
+
+  get article => null;
 }
