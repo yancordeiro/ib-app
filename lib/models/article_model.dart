@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-class ArticleModel {
+class Article {
   final String title;
   final String author;
   final String description;
@@ -9,7 +9,7 @@ class ArticleModel {
   final DateTime publishedAt;
   final String content;
 
-  const ArticleModel({
+  const Article({
     required this.title,
     required this.author,
     required this.description,
@@ -19,8 +19,8 @@ class ArticleModel {
     required this.content,
   });
 
-  factory ArticleModel.fromJson(Map<String, dynamic> json) {
-    return ArticleModel(
+  factory Article.fromJson(Map<String, dynamic> json) {
+    return Article(
       title: json['title'],
       author: json['author'],
       description: json['description'],

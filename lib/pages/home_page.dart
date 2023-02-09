@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../api/article.dart';
+import '../api/get_article.dart';
 import '../widgets/manchete_suite_destaque.dart';
 import '../widgets/chamada_suite.dart';
 

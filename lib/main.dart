@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'api/article.dart';
+import 'api/get_article.dart';
 import 'pages/home_page.dart';
 
 void main() async {
