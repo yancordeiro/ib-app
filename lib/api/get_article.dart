@@ -11,7 +11,8 @@ Future<List<Article>> getArticle() async {
   final response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body);
-    List<Article> articles = data.map((json) => Article.fromJson(json)).toList;
+    List<Article> articles =
+        data.map((json) => Article.fromJson(json)).toList();
     return articles;
   } else {
     throw Exception("Failed to get articles");

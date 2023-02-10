@@ -5,7 +5,12 @@ import '../models/article_model.dart';
 import '../widgets/manchete_suite_destaque.dart';
 import '../widgets/chamada_suite.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   List<Tab> tabs = [
     const Tab(child: Text('últimas notícias')),
     const Tab(child: Text('bahia')),
@@ -14,6 +19,15 @@ class HomePage extends StatelessWidget {
     const Tab(child: Text('últimas notícias')),
     const Tab(child: Text('agenda cultural')),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<List<Article>> fetchArticles() async {
+    return await getArticle();
+  }
 
   final article = const Article(
     author: '',
@@ -53,21 +67,53 @@ class HomePage extends StatelessWidget {
                 tabs: tabs,
               )),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const MancheteSuiteDestaque(),
-              ChamadaSuite(
-                title: article.title,
-                author: article.author,
-                content: article.content,
-                description: article.description,
-                url: article.url,
-                urlToImage: article.urlToImage,
-                article: article.article,
-              ),
-            ],
-          ),
+        body: FutureBuilder<List<Article>>(
+          future: fetchArticles(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    Article article = snapshot.data![index];
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const MancheteSuiteDestaque(),
+                          ChamadaSuite(
+                            title: article.title,
+                            author: article.author,
+                            content: article.content,
+                            description: article.description,
+                            url: article.url,
+                            urlToImage: article.urlToImage,
+                            article: article.article,
+                          ),
+                        ],
+                      ),
+                    );
+                  });
+              // SingleChildScrollView(
+              //   child: Column(
+              //     children: [
+              //       const MancheteSuiteDestaque(),
+              //       ChamadaSuite(
+              //         title: article.title,
+              //         author: article.author,
+              //         content: article.content,
+              //         description: article.description,
+              //         url: article.url,
+              //         urlToImage: article.urlToImage,
+              //         article: article.article,
+              //       ),
+              //     ],
+              //   ),
+              // );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
         ),
       ),
     );
