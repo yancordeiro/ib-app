@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'api/get_article.dart';
 import 'pages/home_page.dart';
 
 void main() async {
@@ -34,6 +33,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return HomePage();
+    return const HomePage();
   }
 }

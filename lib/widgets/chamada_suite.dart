@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../models/article_model.dart';
 
 class ChamadaSuite extends StatelessWidget {
-  final Article article;
   final String title;
   final String author;
   final String description;
@@ -12,15 +9,26 @@ class ChamadaSuite extends StatelessWidget {
   final String urlToImage;
   final String content;
 
-  const ChamadaSuite(
-      {super.key,
-      required this.title,
-      required this.author,
-      required this.description,
-      required this.url,
-      required this.urlToImage,
-      required this.content,
-      required this.article});
+  const ChamadaSuite({
+    super.key,
+    required this.title,
+    required this.author,
+    required this.description,
+    required this.url,
+    required this.urlToImage,
+    required this.content,
+  });
+
+  factory ChamadaSuite.fromArticle(Article article) {
+    return ChamadaSuite(
+      title: article.title,
+      author: article.author,
+      description: article.description,
+      url: article.url,
+      urlToImage: article.urlToImage,
+      content: article.content,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +47,7 @@ class ChamadaSuite extends StatelessWidget {
           ),
           Flexible(
             child: Container(
-              padding: EdgeInsets.only(left: 15),
+              padding: const EdgeInsets.only(left: 15),
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,8 +63,8 @@ class ChamadaSuite extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    article.title,
-                    style: TextStyle(
+                    title,
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
