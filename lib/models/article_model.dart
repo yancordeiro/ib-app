@@ -19,12 +19,13 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
-      title: json['title'] ?? "",
-      author: json['author'] ?? "",
+      title: json['title'] ?? "aManchete",
+      author: json['author'] ?? "aManchete",
       description: json['description'] ?? "",
       url: json['url'] ?? "",
-      urlToImage: json['urlToImage'] ?? "",
-      content: json['content'] ?? "",
+      urlToImage: json['urlToImage'] ??
+          "https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg",
+      content: json['content'] ?? "aManchete",
     );
   }
 

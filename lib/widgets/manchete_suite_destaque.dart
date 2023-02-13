@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 
+import '../models/article_model.dart';
+
 class MancheteSuiteDestaque extends StatelessWidget {
-  // final String chapeu;
-  // final String header;
-  // final String subheader;
-  // final String secondSubheader;
+  final String title;
+  final String author;
+  final String description;
+  final String url;
+  final String urlToImage;
 
   const MancheteSuiteDestaque({
     Key? key,
-    // required this.chapeu,
-    // required this.header,
-    // required this.subheader,
-    // required this.secondSubheader,
+    required this.title,
+    required this.author,
+    required this.description,
+    required this.url,
+    required this.urlToImage,
   }) : super(key: key);
+
+  factory MancheteSuiteDestaque.fromArticle(Article article) {
+    return MancheteSuiteDestaque(
+      title: article.title,
+      author: article.author,
+      description: article.description,
+      url: article.url,
+      urlToImage: article.urlToImage,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +35,10 @@ class MancheteSuiteDestaque extends StatelessWidget {
         Container(
           height: 446,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage("assets/key-alves.jpg"),
+              image: NetworkImage(urlToImage),
             ),
           ),
           child: Container(
@@ -47,9 +61,9 @@ class MancheteSuiteDestaque extends StatelessWidget {
             color: Colors.red,
             padding:
                 const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
-            child: const Text(
-              "BBB 23",
-              style: TextStyle(
+            child: Text(
+              author,
+              style: const TextStyle(
                 fontSize: 12,
                 color: Colors.white,
                 letterSpacing: 0.12,
@@ -66,9 +80,9 @@ class MancheteSuiteDestaque extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Key Alves revela amizade com ex de Bruna Griphao:",
-                  style: TextStyle(
+                Text(
+                  title,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
@@ -77,19 +91,9 @@ class MancheteSuiteDestaque extends StatelessWidget {
                   softWrap: true,
                 ),
                 const SizedBox(height: 15),
-                const Text(
-                  "Prova do líder gera polêmica:",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      letterSpacing: 0.14,
-                      height: 1.2),
-                ),
-                const SizedBox(height: 15),
-                const Text(
-                  "Quem você quer que seja o campeão do BBB23? Vote já!:",
-                  style: TextStyle(
+                Text(
+                  description,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,

@@ -33,7 +33,7 @@ class ChamadaSuite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(15),
       child: Row(
         children: [
           Container(
@@ -41,8 +41,10 @@ class ChamadaSuite extends StatelessWidget {
             height: 90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                  fit: BoxFit.cover, image: AssetImage("assets/vasco.png")),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(urlToImage),
+              ),
             ),
           ),
           Flexible(
@@ -52,10 +54,10 @@ class ChamadaSuite extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "ESPORTE",
-                    style: TextStyle(
-                      color: Colors.green,
+                  Text(
+                    author,
+                    style: const TextStyle(
+                      color: Colors.red,
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                       height: 1.2,
