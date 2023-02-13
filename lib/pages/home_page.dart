@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:noticia24h/controllers/home_page_controller.dart';
+import 'package:noticia24h/widgets/chamada_padrao.dart';
 import '../models/article_model.dart';
 import '../widgets/manchete_suite_destaque.dart';
 import '../widgets/chamada_suite.dart';
@@ -68,9 +69,19 @@ class _HomePageState extends State<HomePage> {
           Article article = controller.articles[index];
           return SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (index == 0) const MancheteSuiteDestaque(),
-                ChamadaSuite.fromArticle(article),
+                if (index == 0)
+                  MancheteSuiteDestaque.fromArticle(article), // 1 artigo
+                if (index == 0)
+                  ChamadaSuite.fromArticle(
+                      article), // loop com 3 artigos (excluindo o anterior)
+                if (index == 0)
+                  ChamadaPadrao.fromArticle(
+                      article), // 1 widget com as 6 artigos (excluindo os anteriores)
+                if (index == 0)
+                  ChamadaSuite.fromArticle(
+                      article), // loop com 3 artigos (excluindo o anterior)
               ],
             ),
           );
@@ -79,7 +90,7 @@ class _HomePageState extends State<HomePage> {
     } else if (controller.errorMessage.isNotEmpty) {
       return Text(controller.errorMessage);
     } else {
-      return const CircularProgressIndicator();
+      return const Center(child: CircularProgressIndicator());
     }
   }
 }
