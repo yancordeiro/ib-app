@@ -3,10 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:noticia24h/controllers/home_page_controller.dart';
-import 'package:noticia24h/widgets/chamada_padrao.dart';
-import '../models/article_model.dart';
-import '../widgets/manchete_suite_destaque.dart';
-import '../widgets/chamada_suite.dart';
+import 'package:noticia24h/pages/home_page_view.dart';
+import 'package:noticia24h/repositories/article_repository.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  HomePageController controller = HomePageController();
+  // late IArticleRepository articleRepository = ArticleRepositoryMemory();
+  late IArticleRepository articleRepository = ArticleRepositoryApi();
+  late HomePageController controller = HomePageController(articleRepository);
 
   @override
   Widget build(BuildContext context) {
@@ -62,31 +62,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _body(BuildContext context) {
-    if (controller.articles.isNotEmpty) {
-      return ListView.builder(
-        itemCount: controller.articles.length,
-        itemBuilder: (context, index) {
-          Article article = controller.articles[index];
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (index == 0)
-                  MancheteSuiteDestaque.fromArticle(article), // 1 artigo
-                if (index == 0)
-                  ChamadaSuite.fromArticle(
-                      article), // loop com 3 artigos (excluindo o anterior)
-                if (index == 0)
-                  ChamadaPadrao.fromArticle(
-                      article), // 1 widget com as 6 artigos (excluindo os anteriores)
-                if (index == 0)
-                  ChamadaSuite.fromArticle(
-                      article), // loop com 3 artigos (excluindo o anterior)
-              ],
-            ),
-          );
-        },
-      );
+    if (controller.hasArticles) {
+      return HomePageView.fromArticles(controller.articles);
     } else if (controller.errorMessage.isNotEmpty) {
       return Text(controller.errorMessage);
     } else {

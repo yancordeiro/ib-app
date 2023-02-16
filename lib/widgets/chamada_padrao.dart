@@ -2,37 +2,22 @@ import 'package:flutter/material.dart';
 import '../models/article_model.dart';
 
 class ChamadaPadrao extends StatelessWidget {
-  final String title;
-  final String author;
-  final String description;
-  final String url;
-  final String urlToImage;
+  final List<Article> articles;
 
-  const ChamadaPadrao(
-      {super.key,
-      required this.title,
-      required this.author,
-      required this.description,
-      required this.url,
-      required this.urlToImage});
+  const ChamadaPadrao({
+    super.key,
+    required this.articles,
+  });
 
-  factory ChamadaPadrao.fromArticle(Article article) {
-    return ChamadaPadrao(
-      title: article.title,
-      author: article.author,
-      description: article.description,
-      url: article.url,
-      urlToImage: article.urlToImage,
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 270,
       child: ListView.builder(
-        itemCount: 6,
+        itemCount: articles.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
+          Article article = articles[index];
           return Padding(
             padding: const EdgeInsets.all(15),
             child: SizedBox(
@@ -49,21 +34,12 @@ class ChamadaPadrao extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: NetworkImage(urlToImage),
+                            image: NetworkImage(article.urlToImage),
                           ),
                         ),
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            // gradient: LinearGradient(
-                            //   colors: [
-                            //     Colors.black.withOpacity(0.6),
-                            //     Colors.black.withOpacity(0.2),
-                            //   ],
-                            //   stops: const [0.0, 1],
-                            //   begin: Alignment.bottomCenter,
-                            //   end: Alignment.topCenter,
-                            // ),
                           ),
                         ),
                       ),
@@ -73,24 +49,26 @@ class ChamadaPadrao extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        author,
+                        article.author,
+                        maxLines: 1,
                         style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.red,
-                          height: 2,
-                          letterSpacing: 0.16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 16,
+                            color: Colors.red,
+                            height: 2,
+                            letterSpacing: 0.16,
+                            fontWeight: FontWeight.bold,
+                            overflow: TextOverflow.ellipsis),
                       ),
                       Text(
-                        title,
+                        article.title,
+                        maxLines: 2,
                         style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
-                          height: 1.5,
-                          letterSpacing: 0.12,
-                          fontWeight: FontWeight.w500,
-                        ),
+                            fontSize: 14,
+                            color: Colors.black,
+                            height: 1.5,
+                            letterSpacing: 0.12,
+                            fontWeight: FontWeight.w500,
+                            overflow: TextOverflow.ellipsis),
                       ),
                     ],
                   )

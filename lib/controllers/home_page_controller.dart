@@ -1,16 +1,25 @@
 import 'package:flutter/widgets.dart';
-import '../api/get_article.dart';
+import 'package:noticia24h/repositories/article_repository.dart';
 import '../models/article_model.dart';
 
 class HomePageController extends ChangeNotifier {
   List<Article> articles = [];
+
   List<String> categorias = [];
 
   String errorMessage = "";
 
-  HomePageController() {
+  final IArticleRepository articleRepository;
+
+  HomePageController(this.articleRepository) {
     _fetchCategorias();
     _fetchArticles();
+  }
+
+  bool get hasArticles => articles.isNotEmpty;
+
+  void _setArticles(List<Article> articles) {
+    this.articles = articles;
   }
 
   void _fetchCategorias() async {
@@ -27,7 +36,8 @@ class HomePageController extends ChangeNotifier {
 
   void _fetchArticles() async {
     try {
-      articles = await getArticle();
+      List<Article> articles = await articleRepository.getArticles();
+      _setArticles(articles);
       errorMessage = "";
       notifyListeners();
     } catch (e) {
